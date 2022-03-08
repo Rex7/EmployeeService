@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EmployeeController {
 	
-	public static final String SERVICE_NAME="EmployeeService";
+	public static final String SERVICE_NAME="CircuitBreaker";
 	@Autowired
 	EmployeeService employeeService;
 
@@ -30,6 +30,7 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/{id}")
+	@CircuitBreaker(name =SERVICE_NAME,fallbackMethod = "fallback")
 	public ResponseTemplate getEmployeeById(@PathVariable("id") int employeeId) {
 		
 		return employeeService.getEmployeeById(employeeId);
