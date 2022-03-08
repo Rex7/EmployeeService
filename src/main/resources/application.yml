@@ -1,0 +1,43 @@
+server:
+  port: 9001
+
+spring:
+  data:
+   jpa:
+      repositories:
+        enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+      use-new-id-generator-mappings: false
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        show_sql = true
+        use_sql_comments=true
+        format_sql=true
+  datasource:
+    username:  root
+    password: Rex9821572187#
+    url: jdbc:mysql://localhost:3306/dataemployee
+  sql:
+    init:
+      platform: mysql
+  application:
+    name: EmployeeService
+    
+    
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+
+
+      
+
