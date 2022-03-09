@@ -32,7 +32,7 @@ public class EmployeeController {
 	@GetMapping("/{id}")
 	@CircuitBreaker(name =SERVICE_NAME,fallbackMethod = "fallback")
 	public ResponseTemplate getEmployeeById(@PathVariable("id") int employeeId) {
-		
+		log.info("calling employee getEmployeeById()");
 		return employeeService.getEmployeeById(employeeId);
 	}
 	

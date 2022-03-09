@@ -27,16 +27,17 @@ spring:
       platform: mysql
   application:
     name: EmployeeService
+  config:
+    import: optional:configserver:http://localhost:9293
+
+
+
+  cloud:
+    config:
+      enabled: true
+      uri:
+      -  http://localhost:9293
     
-    
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    hostname: localhost
 
 resilience4j:
   circuitbreaker:
@@ -47,7 +48,7 @@ resilience4j:
         sliding-window-size: '10'
         wait-duration-in-open-state: 3s
         sliding-window-type: count-based
-        register-health-indicator: 'true'
+        register-health-indicator: true
         failure-rate-threshold: '50'
         automatic-transition-from-open-to-half-open-enabled: 'true'
         minimum-number-of-calls: '5'
@@ -61,6 +62,9 @@ management:
           include: health
   endpoint:
     health:
-      show-details: always    
+      show-details: always   
+ 
+ 
+      
       
 
